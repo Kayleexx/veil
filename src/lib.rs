@@ -1,15 +1,7 @@
-pub mod crypto;
-pub mod network;
-pub mod utils;
 
+pub mod hash_and_reverse; 
+pub mod aes;              
 
-#[cfg(test)]
+pub use hash_and_reverse::*;
+pub use aes::*;
 
-mod tests {
-    #[test]
-    fn modules_Load() {
-        super::crypto::placeholder();
-        super::network::placeholder();
-        super::utils::placeholder();
-    }
-}
