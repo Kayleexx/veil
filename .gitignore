@@ -1,1 +1,11 @@
 /target
+**/*.rs.bk
+**/*.rs~
+Cargo.lock
+.idea
+.vscode
+*.swp
+*.swo
+*.DS_Store
+*.log
+*.json
