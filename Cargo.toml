@@ -5,3 +5,7 @@ edition = "2024"
 
 [dependencies]
 sha2 = "0.10"
+aes = "0.8"
+cbc = "0.1"
+block-padding = "0.2"
+hex = "0.4"
