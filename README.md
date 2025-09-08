@@ -152,6 +152,7 @@ Server response: <hex encoded encrypted output>
 Server response: olleh
 ```
 
+
 **Hash Encryption:**
 
 ```
@@ -202,8 +203,15 @@ All shares are **hex encoded** for network transmission. Combining any `k` valid
 
 ---
 
+## Output
+
+<img width="1349" height="517" alt="image" src="https://github.com/user-attachments/assets/36693847-104a-409f-993e-8276bf1c8894" />
+<img width="1103" height="921" alt="image" src="https://github.com/user-attachments/assets/21c02c42-fc89-456a-bce5-deab85bb2ed2" />
+<img width="1509" height="815" alt="image" src="https://github.com/user-attachments/assets/5f7e5c7c-6ca8-4e6c-ad24-3982c000519b" />
+<img width="1502" height="141" alt="image" src="https://github.com/user-attachments/assets/42b23e4f-f75d-4ecd-bf2e-5b3b87e73a17" />
+
+---
+
 ## License
 
 MIT License.
-
-
