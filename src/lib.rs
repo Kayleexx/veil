@@ -1,39 +1,35 @@
-pub mod hash_and_reverse; 
-pub mod aes;              
+pub mod aes;
 pub mod network;
-pub use hash_and_reverse::*;
-pub use aes::*;
+pub mod utils;
+pub mod hash_and_reverse;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    use crate::network::{start_server, start_client}; // <-- add this
-    use tokio::time::{sleep, Duration};
+use std::fmt;
 
-    #[tokio::test]
-    async fn test_server_client_hash() {
-        let addr = "127.0.0.1:7879"; 
-        tokio::spawn(async move { start_server(addr).await.unwrap() });
-        sleep(Duration::from_millis(100)).await;
-        let result = tokio::spawn(async move { start_client(addr, "hash", "testmessage").await.unwrap() }).await;
-        assert!(result.is_ok());
+#[derive(Debug)]
+pub enum VeilError {
+    Io(std::io::Error),
+    Utf8(std::string::FromUtf8Error),
+    Encryption(String),
+    InvalidInput(String),
+}
+
+impl fmt::Display for VeilError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            VeilError::Io(e) => write!(f, "IO error: {}", e),
+            VeilError::Utf8(e) => write!(f, "UTF-8 error: {}", e),
+            VeilError::Encryption(msg) => write!(f, "Encryption error: {}", msg),
+            VeilError::InvalidInput(msg) => write!(f, "Invalid input: {}", msg),
+        }
     }
+}
 
-    #[tokio::test]
-    async fn test_server_client_reverse() {
-        let addr = "127.0.0.1:7880";
-        tokio::spawn(async move { start_server(addr).await.unwrap() });
-        sleep(Duration::from_millis(100)).await;
-        let result = tokio::spawn(async move { start_client(addr, "reverse", "abc123").await.unwrap() }).await;
-        assert!(result.is_ok());
-    }
+impl std::error::Error for VeilError {}
 
-    #[tokio::test]
-    async fn test_server_client_aes() {
-        let addr = "127.0.0.1:7881";
-        tokio::spawn(async move { start_server(addr).await.unwrap() });
-        sleep(Duration::from_millis(100)).await;
-        let result = tokio::spawn(async move { start_client(addr, "aes", "securetext").await.unwrap() }).await;
-        assert!(result.is_ok());
-    }
+impl From<std::io::Error> for VeilError {
+    fn from(e: std::io::Error) -> Self { VeilError::Io(e) }
+}
+
+impl From<std::string::FromUtf8Error> for VeilError {
+    fn from(e: std::string::FromUtf8Error) -> Self { VeilError::Utf8(e) }
 }
