@@ -3,6 +3,7 @@ pub mod network;
 pub mod utils;
 pub mod hash_and_reverse;
 pub mod secret_sharing;
+pub mod mpc;
 
 use std::fmt;
 
@@ -13,6 +14,7 @@ pub enum VeilError {
     Encryption(String),
     InvalidInput(String),
     Network(String),  
+    MPC(String),
 }
 
 impl fmt::Display for VeilError {
@@ -22,7 +24,8 @@ impl fmt::Display for VeilError {
             VeilError::Utf8(e) => write!(f, "UTF-8 error: {}", e),
             VeilError::Encryption(msg) => write!(f, "Encryption error: {}", msg),
             VeilError::InvalidInput(msg) => write!(f, "Invalid input: {}", msg),
-            VeilError::Network(msg) => write!(f, "Network error: {}", msg), // ✅
+            VeilError::Network(msg) => write!(f, "Network error: {}", msg), 
+            VeilError::MPC(e) => write!(f, "MPC error: {}", e),
         }
     }
 }
