@@ -3,7 +3,7 @@ use veil::network::{start_server, start_client};
 use tokio::runtime::Runtime;
 
 fn main() {
-    // Use a runtime because our network code is async
+
     let rt = Runtime::new().expect("Failed to create Tokio runtime");
 
     println!("\n================================");

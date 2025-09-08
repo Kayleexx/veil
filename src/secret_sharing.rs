@@ -51,7 +51,6 @@ pub fn combine_secret_shares(shares: &[Vec<u8>]) -> Result<Vec<u8>, VeilError> {
         let mut val_bytes = [0u8; SCALAR_SIZE];
         val_bytes.copy_from_slice(&share_bytes[1..]);
 
-        // `Scalar::from_repr` -> CtOption<Scalar>. Convert to Option<Scalar> with explicit type.
         let scalar_opt: Option<Scalar> = Scalar::from_repr(val_bytes.into()).into();
         let scalar = scalar_opt
             .ok_or_else(|| VeilError::Encryption("Invalid scalar in share".into()))?;
@@ -61,7 +60,6 @@ pub fn combine_secret_shares(shares: &[Vec<u8>]) -> Result<Vec<u8>, VeilError> {
         scalar_shares.push(share);
     }
 
-    // **Only changed this line:** explicitly specify the generic so the compiler knows the field type.
     let secret_scalar = shamir::combine_shares::<Scalar>(&scalar_shares)
         .map_err(|e| VeilError::Encryption(e.to_string()))?;
 
