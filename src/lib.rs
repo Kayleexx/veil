@@ -2,6 +2,7 @@ pub mod aes;
 pub mod network;
 pub mod utils;
 pub mod hash_and_reverse;
+pub mod secret_sharing;
 
 use std::fmt;
 
@@ -35,3 +36,5 @@ impl From<std::io::Error> for VeilError {
 impl From<std::string::FromUtf8Error> for VeilError {
     fn from(e: std::string::FromUtf8Error) -> Self { VeilError::Utf8(e) }
 }
+
+
