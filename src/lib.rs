@@ -11,6 +11,7 @@ pub enum VeilError {
     Utf8(std::string::FromUtf8Error),
     Encryption(String),
     InvalidInput(String),
+    Network(String),  
 }
 
 impl fmt::Display for VeilError {
@@ -20,6 +21,7 @@ impl fmt::Display for VeilError {
             VeilError::Utf8(e) => write!(f, "UTF-8 error: {}", e),
             VeilError::Encryption(msg) => write!(f, "Encryption error: {}", msg),
             VeilError::InvalidInput(msg) => write!(f, "Invalid input: {}", msg),
+            VeilError::Network(msg) => write!(f, "Network error: {}", msg), // ✅
         }
     }
 }
