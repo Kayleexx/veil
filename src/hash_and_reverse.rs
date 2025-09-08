@@ -1,6 +1,6 @@
 use sha2::{Sha256, Digest};
 
-pub trait Encryptor {
+pub trait Encryptor: Send + Sync {
     fn encrypt(&self, input: &str, salt: &str) -> Result<String, String>;
 }
 
