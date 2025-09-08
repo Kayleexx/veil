@@ -1,6 +1,7 @@
 # Veil: Secure Multi-Party Computation & Encryption Framework
 
-![Uploading image.png…]()
+<img width="368" height="177" alt="image" src="https://github.com/user-attachments/assets/34e74614-d969-45b7-aa52-4aad5f532dde" />
+
 
 Veil is a Rust-based project that provides a **multi-purpose encryption and secret-sharing framework** with support for:
 
